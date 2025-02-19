@@ -11,11 +11,11 @@ const io = new Server(httpServer, {
 })
 
 io.on("connection", (socket) => {
-    console.log("what is socket", socket)
     console.log("socket is active and connected")
-
+    //we can you use socket to get payload forn client
     socket.on('chat-app' , (payload)=>{
         console.log("what is payload " , payload)
+        // we can you io.emit to send data to ohter client connections
         io.emit('chat-app' , payload)
     })
 });

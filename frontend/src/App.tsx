@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { io } from "socket.io-client"
-import { nanoid } from "nanoid"
+//import { nanoid } from "nanoid"
 
 const socket = io('http://localhost:3000')
 
@@ -17,6 +17,12 @@ function App() {
     socket.emit('chat-app' , {msg})
     setMsg('')
   }
+
+  useEffect(()=>{
+    socket.on('chat-app' , (payload  : string)=>{
+      console.log("checking payload" , payload)
+    })
+  })
 
   return (
     <div className="flex justify-center items-center min-h-screen">
